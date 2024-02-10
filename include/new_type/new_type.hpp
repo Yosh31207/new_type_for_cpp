@@ -91,6 +91,9 @@ DEFINE_COMPARISON_OPERATOR(==)
 DEFINE_COMPARISON_OPERATOR(!=)
 #undef MAKE_COMPARISON_OPERATOR
 
+#define NEWTYPE_DEFINE_NEW_TYPE(Type, BaseType) \
+    using Type = ::newtype::NewType<BaseType, struct Type##NewTypeTag>;
+
 }  // namespace newtype
 
 #endif  // NEW_TYPE_FOR_CPP_HPP_

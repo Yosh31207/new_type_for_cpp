@@ -84,4 +84,16 @@ TEST(NewType, TypeCheck) {
     static_assert(!std::is_convertible_v<std::string, LastName>);
 }
 
+NEWTYPE_DEFINE_NEW_TYPE(Length, int)
+NEWTYPE_DEFINE_NEW_TYPE(Area, int)
+
+constexpr Area operator* (Length x, Length y) {
+    return Area{x.get() * y.get()};
+}
+
+TEST(NewType, DefiningWithMacro) {
+    static_assert(Length{3}.get() == 3);
+    static_assert(Length{3} * Length{5} == Area{15});
+}
+
 }  // namespace
