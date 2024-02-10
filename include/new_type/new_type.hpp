@@ -26,7 +26,7 @@ public:
     constexpr NewType& operator=(const NewType&) = default;
     constexpr NewType& operator=(NewType&&) = default;
 
-    T& get() {
+    constexpr T& get() {
         return value_;
     };
 
