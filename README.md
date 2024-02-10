@@ -60,14 +60,26 @@ using MyType = newtype::NewType<T, Tag>;
 
 The new type needs an identification tag. This tag can be any struct or class type, and it is not necessary to define it. Forward declaration would suffice.
 
+Alternatively, you can define types with the `NEWTYPE_DEFINE_NEW_TYPE` macro.
+
+```C++
+NEWTYPE_DEFINE_NEW_TYPE(MyType, T)
+```
+
 Here is example:
 
 ```C++
-using UserId = newtype::NewType<int, struct UserIdTag>;
-using GameId = newtype::NewType<int, struct GameIdTag>;
-
+// without macro
+using UserId    = newtype::NewType<int, struct UserIdTag>;
+using GameId    = newtype::NewType<int, struct GameIdTag>;
 using FirstName = newtype::NewType<std::string, struct FirstNameTag>;
-using LastName = newtype::NewType<std::string, struct LastNameTag>;
+using LastName  = newtype::NewType<std::string, struct LastNameTag>;
+
+// with macro
+NEWTYPE_DEFINE_NEW_TYPE(UserId, int)
+NEWTYPE_DEFINE_NEW_TYPE(GameId, int)
+NEWTYPE_DEFINE_NEW_TYPE(FirstName, std::string)
+NEWTYPE_DEFINE_NEW_TYPE(LastName, std::string)
 ```
 
 To make an instance, pass a value of original type to the constructor.
